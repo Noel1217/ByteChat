@@ -1,0 +1,72 @@
+@charset "ISO-8859-1";
+body {
+   background:#F2F2F2;
+   
+}
+
+/*Login,Registration,Verfication and forgot password section*/
+.card {
+    border-radius: 5px;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: 100px;
+    padding: 0 5px;
+}
+
+.form-control:hover {
+   border-color: #00B69D;
+}
+.space-logo{
+margin-left:5%;
+}
+
+.bg-my { 
+    background:#1EBEA5;
+} 
+.lead {
+    font-size: 30px;
+}
+.grey-color{
+color:#656B73;
+ font-weight: bold;
+}
+
+input[type="email"],input[type="text"],
+input[type="password"] {
+    border-radius: 5px;
+    padding: 25px;
+}
+code{
+
+color:  #00B69D!important;
+}
+
+.btnGreen {
+ border: none;
+ background: #00B69D;
+ color: white;
+ font-weight: 100;
+ width:200px;
+ padding: 8px;
+ text-transform: uppercase;
+ border-radius: 6px;
+ display: inline-block;
+ transition: all 0.3s ease 0s;
+}
+
+.btnGreen:hover{
+ background:#00BFA5;
+ color:white;
+}
+.text-align{
+margin:6%;
+}
+.table-space{
+	margin-top:1%;
+}
+.text-alignn{
+margin:10%;
+}
+.img-align{
+margin:5%;
+}

@@ -1,0 +1,154 @@
+
+@charset "ISO-8859-1";
+.search{
+	margin:3%;
+}
+/*Profile Section*/
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic {
+  float: none;
+}
+.circle{
+	  margin: 20%;
+  width: 150px;
+  height: 150px;
+border-radius: 50%;
+}
+
+
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+   color: #656B73;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-bio {
+  color: #00BFA5;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+   display: block;
+}
+
+
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #00BFA5;
+}
+
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+  overflow: auto;
+}
+
+/*ProfileImages*/
+* {
+  box-sizing: border-box;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+.column img:hover {
+    opacity: .5;
+}
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+.images{
+	width:250px;
+	height:50px;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 500px) {
+  .column {
+    width: 100%;
+  }
+}
+/*end of profile section*/
+
+/* FindFolwer section */
+.img-circle {
+   width: 50px;
+   height: 50px;
+   border-radius: 50%
+}
+
+
+/*Feeds Section*/
+.cardPost{
+	margin-top:25px;
+	width: 800px;
+	background:white;
+	
+}
+
+.label {
+  color: white;
+  padding: 8px;
+  border-radius:5px;
+  font-family: Arial;
+}
+.success {background-color: #4CAF50;} /* Green */
+.danger {background-color: #D9534F;} /* Red */ 
+
+
