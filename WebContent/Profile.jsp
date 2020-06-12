@@ -25,7 +25,10 @@
 <div id="sessionCheck"></div>
 <div class="profileBody">
 <%
+//Declare varibales
 String name = null;
+String postId = null;
+String imageOrVideo=null;
 String sessionUser = session.getAttribute("sessionUser").toString();
 String bio = null;
 List<UserInfo> info = (ArrayList<UserInfo>) request.getAttribute("profileInfo");
@@ -35,7 +38,7 @@ for(int i = 0; i< info.size(); i++){
 	bio = data.getBio();
 	if(bio == null){
 		bio="Hey there , I am using ByteChat";
-	}
+	}//end if bio
 %>
 <div class="container">
     <div class="row profile">
@@ -65,7 +68,7 @@ for(int i = 0; i< info.size(); i++){
 			           <button class="btn btn-primary btn-md" type="submit">Logout</button>
 			           </form>		
 					 <% 
-				 }
+				 }//end if sessionUser
 				%>
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
@@ -74,11 +77,7 @@ for(int i = 0; i< info.size(); i++){
 				<%
 				   if(sessionUser.contains(name)){
 					   %>
-					   <ul style="list-style: none;">
-						<li>
-						<a href="#">Account Settings </a>
-
-						</li>				
+					   <ul style="list-style: none;">			
 						<li>
 							<a href="./ProfileController?user=<%=sessionUser%>&Page=Followers">
 							Followers </a>
@@ -93,7 +92,7 @@ for(int i = 0; i< info.size(); i++){
 						</li>
 					</ul>
 					   <%
-				   }
+				   }//end if sessionUser
 				%>
 					
 				</div>
@@ -104,8 +103,6 @@ for(int i = 0; i< info.size(); i++){
             <div class="profile-content" style=" height: 675px;">
             <div class="row ">
             <% 
-            String postId = null;
-            String imageOrVideo=null;
             List<UserInfo> images = (ArrayList<UserInfo>) request.getAttribute("images/video");
             for(int j = 0; j<images.size(); j++){
             	UserInfo profileImages = images.get(j);
@@ -131,9 +128,9 @@ for(int i = 0; i< info.size(); i++){
                    </div>
 				
 					<%
-				}				
+				}//end if imageOrVideo				
               
-            }
+            }//end for j
             %>
              </div>
             </div>

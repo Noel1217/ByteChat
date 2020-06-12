@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class to add like to the post
 package com.Post;
 
 import java.io.IOException;
@@ -15,8 +18,12 @@ import com.Connector.Dao;
  */
 @WebServlet("/AddLikeController")
 public class AddLikeController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
-  
+	
+	//This procedure takes in a request object and response object and add like to post
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declaring variables and objects
 		HttpSession session = request.getSession();
@@ -36,6 +43,6 @@ public class AddLikeController extends HttpServlet {
 		}else {
 			response.sendRedirect("./PostController");
 		}
-	}
+	}//end doPost
 
 }

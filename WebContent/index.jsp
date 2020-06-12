@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="shortcut icon" href="logo.png">
-<title>Insert title here</title>
+<title>Home page</title>
 </head>
 <body>
 <a href="Login.jsp?userRegistered=">Click</a>

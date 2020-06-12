@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-1
+//This servlet class unfollow other users
 package com.Freinds;
 
 import java.io.IOException;
@@ -15,8 +18,12 @@ import com.Connector.Dao;
  */
 @WebServlet("/UnFollowController")
 public class UnFollowController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
   
+	//This procedure takes in a request object and response object and unfollow other user from inputed user
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declare variables
 		HttpSession session = request.getSession();
@@ -38,7 +45,7 @@ public class UnFollowController extends HttpServlet {
 				response.sendRedirect("FindFollowers.jsp");
 			}else {
 				response.sendRedirect("Error.jsp");
-			}
+			}//end if result
 		}else if(page.equals("ProfileFollowing")){
 
 			//check result
@@ -47,10 +54,9 @@ public class UnFollowController extends HttpServlet {
 				response.sendRedirect("./ProfileController?user="+user+"&Page=Following");
 			}else {
 				response.sendRedirect("Error.jsp");
-			}
-		}
+			}//end if result
+		}//end if page
       
-		
-	}
+	}//end doPost
 
 }

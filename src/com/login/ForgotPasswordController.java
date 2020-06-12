@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-03-15
+//This servlet class to get password recovery
 package com.login;
 
 import java.io.IOException;
@@ -15,9 +18,9 @@ import com.Connector.Dao;
 @WebServlet("/ForgotPasswordController")
 public class ForgotPasswordController extends HttpServlet {
 	
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	//This procedure takes in a request object and response object and get password recovered
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declaring variables and objects
 		String email = request.getParameter("email");
@@ -37,6 +40,6 @@ public class ForgotPasswordController extends HttpServlet {
 		}else {
 			response.sendRedirect("ForgotPassword.jsp");
 		}//end if result
-	}
+	}//end doPost
 
 }

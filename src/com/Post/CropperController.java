@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class to crop image
 package com.Post;
 
 import java.awt.image.BufferedImage;
@@ -25,13 +28,14 @@ import com.Parameters.GetParameters;
  */
 @WebServlet("/CropperController")
 public class CropperController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
 
-
-
-
+	//This procedure takes in a request object and response object and crop image to inputed size
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Declaring varibales
+		//Declaring variables and objects
 		HttpSession session = request.getSession();
 		String user = session.getAttribute("sessionUser").toString();
 		String typeFile = request.getParameter("video/image");
@@ -65,15 +69,8 @@ public class CropperController extends HttpServlet {
 	             BufferedImage finalImage = orginal.getSubimage((int) x,(int) y,(int) w,(int) h);
 	             ImageIO.write(finalImage, type, imageFile);
 	             
-	             //Deleting orginal file
-	             if( file.delete()) 
-	             { 
-	                 System.out.println("File deleted successfully"); 
-	             } 
-	             else
-	             { 
-	                 System.out.println("Failed to delete the file"); 
-	             } 
+	             file.delete();  //Deleting original file
+	
 	             request.setAttribute("loader", user);
 	             request.getRequestDispatcher("PostBarLoader.jsp").forward(request, response);
 	        }catch(Exception e) {
@@ -81,13 +78,13 @@ public class CropperController extends HttpServlet {
 	        	request.setAttribute("postError", "Error ,please try again uploading");
 	        	request.getRequestDispatcher("PostToStory.jsp").forward(request, response);
 	        	
-	        }
+	        }//end try catch
 	        
 		}else {
 			request.setAttribute("loader", user);
             request.getRequestDispatcher("PostBarLoader.jsp").forward(request, response);
 		}//end if typeFile
 		
-	}
+	}//end doPost
 
 }

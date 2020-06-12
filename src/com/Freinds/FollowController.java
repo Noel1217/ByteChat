@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-1
+//This servlet class follow other users
 package com.Freinds;
 
 import java.io.IOException;
@@ -15,8 +18,12 @@ import com.Connector.Dao;
  */
 @WebServlet("/FollowController")
 public class FollowController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
-   
+	
+	//This procedure takes in a request object and response object and follow other user from inputed user
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declare variables
 		HttpSession session = request.getSession();
@@ -25,15 +32,15 @@ public class FollowController extends HttpServlet {
 		String FollowUser = request.getParameter("followerName");
 		Dao requestedDao = new Dao();
 		int rslt2 = 0;
+		
 		if(page.equals("Profile")) {
 			page = "./ProfileController?user="+user+"&Page=Followers";
 		}else {
 			page = "FindFollowers.jsp";
-		}
+		}//end if page
 		
 		//Connection to database
 		rslt2 = requestedDao.acceptFollower(user,FollowUser);
-		System.out.println(rslt2);
 		requestedDao.closePstm();
 		requestedDao.closeCon();
 		
@@ -42,7 +49,7 @@ public class FollowController extends HttpServlet {
 			response.sendRedirect(page);
 		}else {
 			response.sendRedirect("Error.jsp");
-		}
-	}
+		}//end if rslt2
+	}//end do Post
 
 }

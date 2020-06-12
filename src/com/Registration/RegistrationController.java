@@ -1,27 +1,16 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class to add new user
 package com.Registration;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.Common.Commons;
 import com.Connector.Dao;
@@ -33,9 +22,12 @@ import com.Parameters.GetParameters;
 @WebServlet("/RegistrationController")
 
 public class RegistrationController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
 	
-       
+	//This procedure takes in a request object and response object and add new user
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declaring Variables and objects
 		Dao regDao = new Dao(); //Creating connection with database
@@ -69,7 +61,7 @@ public class RegistrationController extends HttpServlet {
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}//end try catch
 			
 			if(result > 0 ) {
 				request.setAttribute("username", username);
@@ -84,8 +76,8 @@ public class RegistrationController extends HttpServlet {
 		//Setting attribute
 		request.setAttribute("RegError", "Password Incorrect");
 		request.getRequestDispatcher("Registration.jsp").forward(request, response);
-	    }//end if password.lenght();				
+	    }//end if password			
 		
-	}
+	}//end doPost
 
 }

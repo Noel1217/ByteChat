@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-19
+//This servlet class to check credentials and login
 package com.login;
 
 import java.io.IOException;
@@ -19,9 +22,12 @@ import com.Connector.Dao;
  */
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
        
-    
+	//This procedure takes in a request object and response object and check credentials and login
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declaring variables and objects
 		String user = request.getParameter("Username");
@@ -58,9 +64,8 @@ public class LoginController extends HttpServlet {
 		}else {
 			error ="Error";
 		}//end if result
-		
-		
-	}
+
+	}//end doGet
 
 	
 

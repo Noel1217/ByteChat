@@ -24,6 +24,7 @@
 
 <div class="profileBody">
 <%
+//Declare variable
 String name = null;
 int followerCount =  0;
 UserInfo dataRequest = null;
@@ -40,7 +41,7 @@ for(int i = 0; i< info.size(); i++){
 	bio = data.getBio();
 	if(bio == null){
 		bio="Hey there , I am using ByteChat";
-	}
+	}//end if bio
 %>
 <div class="container">
     <div class="row profile">
@@ -74,11 +75,7 @@ for(int i = 0; i< info.size(); i++){
 				<%
 				   if(sessionUser.contains(name)){
 					   %>
-					   <ul style="list-style: none;">
-						<li>
-						<a href="#">Account Settings </a>
-
-						</li>				
+					   <ul style="list-style: none;">				
 						<li>
 							<a href="./ProfileController?user=<%=sessionUser%>&Page=Followers">
 							Followers </a>
@@ -94,7 +91,7 @@ for(int i = 0; i< info.size(); i++){
 						</li>
 					</ul>
 					   <%
-				   }
+				   }//end if sessionUser
 				%>
 				</div>
 				<!-- END MENU -->
@@ -126,9 +123,8 @@ for(int i = 0; i< info.size(); i++){
         			}else if(status.contains("Offline")){
         				labelOfflineOrOnline = "label danger";
         			}//end if status
-                     System.out.println(dataRequest.getName() );
         		   %>
-     			  <form action="FollowController" method="post">
+     			  <form action="FollowController?page=Profile" method="post">
      			    <tr>
      			     <td>
      			      <img class="img-circle img-align"src="./getImage?User=<%= dataRequest.getName() %>" >

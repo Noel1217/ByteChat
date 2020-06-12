@@ -20,8 +20,8 @@
 <body>
 <%
 String sessionUser  = request.getParameter("userRegistered");
-if(sessionUser.isEmpty()){
-}else{
+ if(sessionUser.isEmpty()){
+ }else{
 %>
     <script>
     function start(){
@@ -38,7 +38,7 @@ if(sessionUser.isEmpty()){
     window.onload =  start;
     </script>
 <%
-}%>
+ }//end if sessionUser%>
 <nav class="navbar navbar-expand-sm bg-my navbar-dark ">
   <!-- Brand/logo -->
    <a class="navbar-brand space-logo" href="index.jsp">

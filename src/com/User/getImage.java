@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class getImage using username
 package com.User;
 
 import java.io.IOException;
@@ -17,9 +20,12 @@ import com.Connector.Dao;
  */
 @WebServlet("/getImage")
 public class getImage extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
        
-   
+	//This procedure takes in a request object and response object and gets Image from username
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declaring variables and objects
 		String user = request.getParameter("User");
@@ -36,11 +42,11 @@ public class getImage extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}//end try catch
 		
 		out = response.getOutputStream();
 		out.write(image);
 		out.close();
-	}
+	}//end for service
 
 }

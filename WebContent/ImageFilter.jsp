@@ -25,6 +25,7 @@
 <div id="sessionCheck"></div>
     <div class="container">
     <%
+    //Declare variables
     String data = (String) request.getAttribute("fileInput");
     String orginalFile = (String) request.getAttribute("orginalFile");
     %>

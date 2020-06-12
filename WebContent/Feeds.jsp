@@ -20,6 +20,7 @@
 <div id="sessionCheck"></div>
 <div class="container ">
   <%
+  //Declare variables
    String postTitle = null;
    int postId  = -1;
    String username = null;
@@ -55,7 +56,7 @@
 		    %>
 		     <img class="card-img-top"  style="height:550px;" src="<%=postImageOrVideo%>" alt="Card image cap">
 			<%
-		}
+		}//end if postImageOrVideo
 		%>		 
 		  <div class="card-body " >
 		  <form action="AddLikeController" method="Post">
@@ -71,7 +72,7 @@
 </div>
 	<%}// end for j
 	}//end for i
-  }%>
+  }//end if postUser%>
   
   <script type="text/javascript">
 

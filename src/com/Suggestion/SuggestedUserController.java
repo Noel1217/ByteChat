@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-03-15
+//This servlet class run algorithm to find follower suggestions
 package com.Suggestion;
 
 import java.io.IOException;
@@ -25,9 +28,9 @@ public class SuggestedUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
+	//This procedure takes in a request object and response object and gets all follower suggestion
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declare variables
 		Dao suggestionDao = new Dao();
@@ -60,16 +63,16 @@ public class SuggestedUserController extends HttpServlet {
 					}else {
 						likedUserPost.add(suggestionDao.getLikedPostUsers(user));
 					}//end if user
-				}
+				}//end for user
 
 				
 				for(UserInfo userPostLiked : likedUserPost) {
 					if(userPostLiked.getName() != null) {
 						distanceToUser = common.Similarity(userPostLiked.getUserLikedPost(), session.getUserLikedPost());
 						similarUsers.put(distanceToUser, userPostLiked.getName());
-					}
-				}
-				similarUsers = common.haspMapSort(similarUsers);
+					}//end if userPostiked
+				}//end for userPostLiked
+				similarUsers = common.hashMapSort(similarUsers);
 
 				if(similarUsers.isEmpty()) {
 					System.out.println("No Suggestions");
@@ -77,14 +80,11 @@ public class SuggestedUserController extends HttpServlet {
 					for(Double key : similarUsers.keySet()) {
 						if(!followingUsers.contains(similarUsers.get(key))) {
 							topSuggestions.add(suggestionDao.getRequestedInfo(similarUsers.get(key)));
-						}
-					}
-					
-				}
-
-			}
-			
-		}
+						}//end if followingUsers
+					}//end for key
+				}//end if similarUser
+			}//end all Users
+		}//end session
 
 
 		info = suggestionDao.getProfile(sessionUser);
@@ -92,7 +92,7 @@ public class SuggestedUserController extends HttpServlet {
 		request.setAttribute("suggestions",topSuggestions );
 		request.getRequestDispatcher("ProfileSuggestions.jsp").forward(request, response);
 		
-	}
+	}//end service
 
 	
 

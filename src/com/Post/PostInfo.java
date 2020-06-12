@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class to add like to the post
 package com.Post;
 
 import java.sql.Date;

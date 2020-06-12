@@ -23,6 +23,7 @@
 <div id="sessionCheck"></div>
 <div class="profileBody">
 <%
+//declare variables
 String name = null;
 int followerCount =  0;
 UserInfo dataRequest = null;
@@ -38,7 +39,7 @@ for(int i = 0; i< info.size(); i++){
 	bio = data.getBio();
 	if(bio == null){
 		bio="Hey there , I am using ByteChat";
-	}
+	}//end if bio
 %>
 <div class="container">
     <div class="row profile">
@@ -72,11 +73,7 @@ for(int i = 0; i< info.size(); i++){
 				<%
 				   if(sessionUser.contains(name)){
 					   %>
-					   <ul style="list-style: none;">
-						<li>
-						<a href="#">Account Settings </a>
-
-						</li>				
+					   <ul style="list-style: none;">				
 						<li>
 							<a href="./ProfileController?user=<%=sessionUser%>&Page=Followers">
 							Followers </a>
@@ -92,7 +89,7 @@ for(int i = 0; i< info.size(); i++){
 						</li>
 					</ul>
 					   <%
-				   }
+				   }//end sessionUser
 				%>
 				</div>
 				<!-- END MENU -->
@@ -110,34 +107,32 @@ for(int i = 0; i< info.size(); i++){
         	   <h6>No Users Following</h6>
         	  <% 
            }else{
-        	   
-       	   for(int j = 0; j<followingsArray.size(); j++){
-       		   dataRequest = followingsArray.get(j);
-       		   System.out.println(dataRequest);
-       		   status  = dataRequest.getStatus();
-       		   followerCount = Commons.getFollowerCount(dataRequest.getName()); 
-       		   if(status.contains("Online")){
-       				labelOfflineOrOnline = "label success";
-       			}else{
-       				labelOfflineOrOnline = "label danger";
-       			}//end if status
-
-       		   %>
-   			  <form action="UnFollowController" method="post">
-   			  <input type="hidden" name="Page" value="ProfileFollowing">
-   			    <tr>
-   			     <td>
-   			      <img class="img-circle img-align"src="./getImage?User=<%= dataRequest.getName() %>" >
-   			     </td>
-   			     <td><div class="text-alignn"><%=dataRequest.getName()  %></div></td>
-   			     <td><div class="text-align">Followers: <%=followerCount %></div></td>
-   			     <td><div class="text-align"><span class="<%=labelOfflineOrOnline %>"><%=status %></span></div></td>
-   			     <td><div class="text-right img-align"><button type="submit" name="unRequestName" value="<%=dataRequest.getName()%>" class="btn btn-primary" >UnFollow</button></div></td>
-   			    </tr>
-   			  </form>
-    			   <%	   
-           }//end if requestedExist      
-           }
+	       	   for(int j = 0; j<followingsArray.size(); j++){
+	       		   dataRequest = followingsArray.get(j);
+	       		   System.out.println(dataRequest);
+	       		   status  = dataRequest.getStatus();
+	       		   followerCount = Commons.getFollowerCount(dataRequest.getName()); 
+	       		   if(status.contains("Online")){
+	       				labelOfflineOrOnline = "label success";
+	       			}else{
+	       				labelOfflineOrOnline = "label danger";
+	       			}//end if status
+	       		   %>
+	   			  <form action="UnFollowController" method="post">
+	   			  <input type="hidden" name="Page" value="ProfileFollowing">
+	   			    <tr>
+	   			     <td>
+	   			      <img class="img-circle img-align"src="./getImage?User=<%= dataRequest.getName() %>" >
+	   			     </td>
+	   			     <td><div class="text-alignn"><%=dataRequest.getName()  %></div></td>
+	   			     <td><div class="text-align">Followers: <%=followerCount %></div></td>
+	   			     <td><div class="text-align"><span class="<%=labelOfflineOrOnline %>"><%=status %></span></div></td>
+	   			     <td><div class="text-right img-align"><button type="submit" name="unRequestName" value="<%=dataRequest.getName()%>" class="btn btn-primary" >UnFollow</button></div></td>
+	   			    </tr>
+	   			  </form>
+	    			   <%	   
+           }//end for j    
+           }//end followingsArray
            %>
            </tbody>
           </table>           

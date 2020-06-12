@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class to check credentials is valid or not
 package com.login;
 
 import java.io.IOException;
@@ -19,7 +22,10 @@ import com.Connector.Dao;
 @WebFilter("/LoginController")
 public class LoginParameter implements Filter {
 
-  
+	//This procedure takes in a request object and response object and check credentials is valid or not
+    //request:ServletRequest:containing request object from website
+    //reponse:ServletResponse:containg response object to the website from server side
+	//chain:FilterChain:object send data to filters and then to servlet
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		//Declaring Variables and Object
 	    HttpServletRequest resq = (HttpServletRequest) request;
@@ -33,9 +39,6 @@ public class LoginParameter implements Filter {
 		   chain.doFilter(request, response);
 		}else {
 		   resp.sendRedirect("Login.jsp?userRegistered="); //sending user	
-		}//end if uer.length() and pass.length()
-	}
-
-	
-
+		}//end if users and pass
+	}//end doFilter
 }

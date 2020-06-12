@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This class add session attributes
 package com.session;
 
 import javax.servlet.annotation.WebListener;
@@ -7,38 +10,26 @@ import javax.servlet.http.HttpSessionBindingEvent;
 
 import com.Connector.Dao;
 
-/**
- * Application Lifecycle Listener implementation class SessionManagement
- *
- */
+
 @WebListener
 public class SessionManagement implements HttpSessionAttributeListener {
 
-    /**
-     * Default constructor. 
-     */
-    public SessionManagement() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-     * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
-     */
+    //this procedure takes in a HttpSessionBindingEvent object and add attribute
+	//se:HttpSessionBindingEvent:this object holds session event
     public void attributeAdded(HttpSessionBindingEvent se)  { 
-    	//Declare variables
+    	//Declare variables and objects
      	Dao sessionDao = new Dao();
      	String status = "Online";
      	String user =  se.getValue().toString(); // getting attribute value(username)
-     	System.out.println("Online");
+     	
      	 //Updating status
      	sessionDao.userStatus(user, status); //changing status
     	sessionDao.closePstm();
      	sessionDao.closeCon();
-    }
+    }//attributeAdded
 
-	/**
-     * @see HttpSessionAttributeListener#attributeRemoved(HttpSessionBindingEvent)
-     */
+    //this procedure takes in a HttpSessionBindingEvent object and removes attribute
+	//se:HttpSessionBindingEvent:this object holds session event
     public void attributeRemoved(HttpSessionBindingEvent se)  { 
     	//Declare variables
      	Dao sessionDao = new Dao();
@@ -49,13 +40,8 @@ public class SessionManagement implements HttpSessionAttributeListener {
      	sessionDao.userStatus(user, status); //changing status
      	sessionDao.closePstm();
      	sessionDao.closeCon();
-    }
+    }//end attributeRemoved
 
-	/**
-     * @see HttpSessionAttributeListener#attributeReplaced(HttpSessionBindingEvent)
-     */
-    public void attributeReplaced(HttpSessionBindingEvent se)  { 
-         // TODO Auto-generated method stub
-    }
+	
 	
 }

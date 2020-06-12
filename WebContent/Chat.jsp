@@ -9,20 +9,20 @@
 <head>
 <meta charset="ISO-8859-1">
  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>Chat</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <link type="text/css" href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/chatStyleSheet.css">
-     <link href="css/styleSheet.css" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="logo.png">
-    <script type="text/javascript">
- 
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Chat</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+ <link type="text/css" href="css/style.css" rel="stylesheet">
+ <link rel="stylesheet" href="css/chatStyleSheet.css">
+ <link href="css/styleSheet.css" rel="stylesheet" type="text/css">
+ <link rel="shortcut icon" href="logo.png">
+ <script type="text/javascript">
+
     $(document).ready(function(){
     setInterval(function(){
           $("#displayarea").load("ChatScreen.jsp" );
@@ -37,21 +37,18 @@
     		  availableWidth / contentWidth, 
     		  availableHeight / contentHeight 
     		);
-    
-    </script>
-    <style>
-
-.container {
-width:auto;
-  overflow-y: scroll;
-  overscroll-behavior-y: contain;
-  scroll-snap-type: y mandatory;
-}
-
-.container > div > div:last-child {
-  scroll-snap-align: end;
-}
-
+</script>
+<style>
+	.container {
+	width:auto;
+	  overflow-y: scroll;
+	  overscroll-behavior-y: contain;
+	  scroll-snap-type: y mandatory;
+	}
+	
+	.container > div > div:last-child {
+	  scroll-snap-align: end;
+	}
 </style>
 <title>Chat</title>
 </head>
@@ -59,6 +56,7 @@ width:auto;
 <%@ include file="Navbar.jsp" %>  
 <%@ include file="sessionRedirecting.jsp" %>  
 <%
+//Declare variables and objects
 List<UserInbox> inboxData = null;
 String sessionUser =session.getAttribute("sessionUser").toString().trim();
 ArrayList<String> following = (ArrayList<String>) request.getAttribute("following");
@@ -92,8 +90,8 @@ UserInbox data = null;
 		        		%>		       
 		        		<input type="checkbox" name="userSelected" value="<%=name %>">&nbsp;<%=name %>
 		        		<%
-		        		}
-		        	}
+		        		}//end if name
+		        	}//end for name
 		        	%>
 		        	<input type="checkbox" style="opacity:0;"  name="userSelected" value="<%=sessionUser%>" checked>
 		        	<%
@@ -103,7 +101,7 @@ UserInbox data = null;
 		        	<h5>No Users Available</h5>
 		        	
 		        	<%
-		        }
+		        }//end if following
 		        %>
 		      </div>
 		      <div class="modal-footer">
@@ -140,8 +138,8 @@ UserInbox data = null;
 		        		%>
 		        		<input type="checkbox" name="userSelected" value="<%=name %>">&nbsp;<%=name %>
 		        		<%
-		        		}
-		        	}
+		        		}//end if name
+		        	}//end for name
 		        	%>
 		        	<input type="checkbox" style="opacity:0;"  name="userSelected" value="<%=sessionUser %>" checked>
 		        	<%
@@ -151,7 +149,7 @@ UserInbox data = null;
 		        	<h5>No Users Available</h5>
 		        	
 		        	<%
-		        }
+		        }//end if following
 		        %>
 		         <div class="custom-file">
                    <input type="file" name="image" class="custom-file-input" accept="image/*"  >
@@ -174,17 +172,12 @@ UserInbox data = null;
 		  inboxData = (ArrayList<UserInbox>) request.getAttribute("inboxData");
 		  for(int i = 0; i<inboxData.size(); i++){
 			  data = inboxData.get(i);
-			  System.out.println(data.toString());
 			  if(data.getChatMembers().length == 2){
 				  System.out.println(Arrays.toString(data.getChatMembers()));
 				  for(int j = 0; j <data.getChatMembers().length ; j++){
 					  String[] temp = data.getChatMembers();
 					  System.out.println(sessionUser);
 					  if(!temp[j].trim().equals(sessionUser)){
-						  System.out.println("///");
-						  
-						  System.out.println(temp[j]);
-						  System.out.println("///");
 						  String name = temp[j];
 						  %>
 							<div class="chat_list">
@@ -198,8 +191,8 @@ UserInbox data = null;
 							</div>	
 								
 						  <%
-					  }			
-				  }		
+					  }//end if temp[j]			
+				  }//end for j		
 				  
 				  
 			  }else{
@@ -215,11 +208,11 @@ UserInbox data = null;
 					  </div>
 					</div>		
 				  <%
-			  }
+			  }//end if data
 			
-		  }
+		  }//end for i
 		  
-	  }
+	  }//end if request
 	  %>
 		
 	  </div>
@@ -234,7 +227,7 @@ UserInbox data = null;
 			  %>
 			  <div id="displayarea"></div>
 			  <%
-		  }
+		  }//end if rquest
 		%>
 		</div>
 	  </div>

@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class will get all information of current user
 package com.User;
 
 import java.io.IOException;
@@ -22,8 +25,11 @@ import com.Connector.Dao;
  */
 @WebServlet("/ProfileController")
 public class ProfileController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
-  
+	//This procedure takes in a request object and response object and gets current users information
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declare objects
 		String user = request.getParameter("user");
@@ -46,8 +52,8 @@ public class ProfileController extends HttpServlet {
 				for(String username:followerUserArray ) {
 					if(!username.isEmpty() && !username.equals(user)) {
 						userInfo.add(profileDao.getRequestedInfo(username));
-					}
-				}
+					}//end if username
+				}//end for username
 				
 				break;
 			case "Following":
@@ -58,15 +64,15 @@ public class ProfileController extends HttpServlet {
 					if(!users.isEmpty() && !users.equals(user)) {
 						System.out.println("Hi");
 						followingUserArray.add(profileDao.getRequestedInfo(users));
-					}
-				}
+					}//end if users
+				}//end for users
 			
 				break;
 			default:
 				info = profileDao.getProfile(user);
 				imagesOrVideo = profileDao.getProfileId(user);
 				break;
-	    }
+	    }//end switch requestOrProfilePage
 		
 		//Closing connections
 		profileDao.closePstm();
@@ -91,8 +97,8 @@ public class ProfileController extends HttpServlet {
 				request.setAttribute("profileInfo", info);
 				request.getRequestDispatcher("Profile.jsp").forward(request, response);
 				break;
-		}
-	}
+		}//end switch requestOrProfilePage
+	}//end service
 
 	
 

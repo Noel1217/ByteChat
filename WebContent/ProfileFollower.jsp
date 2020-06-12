@@ -23,6 +23,7 @@
 <div id="sessionCheck"></div>
 <div class="profileBody">
 <%
+//declare variables
 String name = null;
 int followerCount =  0;
 UserInfo dataRequest = null;
@@ -40,7 +41,7 @@ for(int i = 0; i< info.size(); i++){
 	bio = data.getBio();
 	if(bio == null){
 		bio="Hey there , I am using ByteChat";
-	}
+	}//end if bio
 %>
 <div class="container">
     <div class="row profile">
@@ -75,11 +76,7 @@ for(int i = 0; i< info.size(); i++){
 				   if(sessionUser.contains(name)){
 					   %>
 					     
-					   <ul style="list-style: none;">
-						<li>
-						<a href="#">Account Settings </a>
-
-						</li>				
+					   <ul style="list-style: none;">				
 						<li>
                             <a href="./ProfileController?user=<%=sessionUser%>&Page=Following">
 							Following </a>
@@ -96,7 +93,7 @@ for(int i = 0; i< info.size(); i++){
 					</ul>
 					   <%
 
-				   }
+				   }//end if sessionUser
 				%>
 				</div>
 				<!-- END MENU -->

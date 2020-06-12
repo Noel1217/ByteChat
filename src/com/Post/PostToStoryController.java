@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class to add post
 package com.Post;
 
 import java.io.File;
@@ -19,9 +22,12 @@ import com.Parameters.GetParameters;
  */
 @WebServlet("/PostToStoryController")
 public class PostToStoryController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
        
-   
+	//This procedure takes in a request object and response object and add post
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		//Declaring variables and objects
 		Dao postDao = new Dao(); //Connecting to database
@@ -38,7 +44,7 @@ public class PostToStoryController extends HttpServlet {
 		postName = data.getPostName();
 		imageOrVideo = data.getPostImageOrVideo();
 		
-		//Formatiing the filepath
+		//Formating the filepath
 		filePath = imageOrVideo.replace("Post/", "");
 		String path = "C:\\Users\\Noel Gregory\\eclipse-workspace\\ByteWeb\\WebContent\\Post\\"+filePath;
         File file = new File(path);
@@ -52,28 +58,25 @@ public class PostToStoryController extends HttpServlet {
 		if(result > 0 ) {
 			System.out.println(path);
 			if(imageOrVideo.contains(".mp4")) {
-				  request.setAttribute("loader", user);
-		             request.getRequestDispatcher("PostBarLoader.jsp").forward(request, response);
+				request.setAttribute("loader", user);
+		        request.getRequestDispatcher("PostBarLoader.jsp").forward(request, response);
 			}else {
 				try {
 					Thread.sleep(4000);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}//end try catch
 				request.setAttribute("fileInput", imageOrVideo);
 				request.setAttribute("orginalFile", imageOrVideo);
 				request.getRequestDispatcher("ImageFilter.jsp").forward(request, response);
-				
-			}
-			
-			
+			}//end if imageOrVideo
 		}else {
 			request.setAttribute("postError", "Could not Post");
 			request.getRequestDispatcher("PostToStory.jsp").forward(request, response);
 					
-		}
+		}//end if result
 		
-	}
+	}//end doPost
 
 }

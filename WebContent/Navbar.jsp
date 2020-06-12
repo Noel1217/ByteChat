@@ -12,7 +12,7 @@
 	String user = null;
 	if(session.getAttribute("sessionUser") != null){ 
 		user = session.getAttribute("sessionUser").toString();
-	}
+	}//end if session
   %>
  <ul class="navbar-nav space-items ">
     <li class="nav-item  ">

@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This servlet class to get all post from user information
 package com.Post;
 
 import java.io.IOException;
@@ -20,8 +23,12 @@ import com.Connector.Dao;
  */
 @WebServlet("/PostController")
 public class PostController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
    
+	//This procedure takes in a request object and response object and get all post by user information
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declare objects
 		Dao postDao = new Dao();
@@ -37,19 +44,18 @@ public class PostController extends HttpServlet {
 
 		if(!userFollowings.isEmpty()  && !userFollowers.isEmpty()) {
 			userFollowings.retainAll(userFollowers);
-			
+		
 			for(int i = 0; i<userFollowings.size(); i++) {
 				data.add(postDao.getPost(userFollowings.get(i)));
-			}
-			postDao.closePstm();
+			}//end for i
 			postDao.closeRs();
+			postDao.closePstm();
 			postDao.closeCon();
-		}
-
+		}//end userFollowing
 		
 		//Requesting attribute and redirecting
 		request.setAttribute("postInfo", data);
 		request.getRequestDispatcher("Feeds.jsp").forward(request, response);
-	}
+	}//end service
 
 }

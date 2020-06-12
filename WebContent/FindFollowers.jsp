@@ -18,10 +18,7 @@
 </head>
 <body oncontextmenu="return false;">
 <%@ include file="Navbar.jsp" %> 
-
-
 <div id="sessionCheck"></div>
-
 <div class="container ">
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
    <form action="FindUsersController" class="search" method="get"  >
@@ -35,6 +32,7 @@
 <table class="table table-striped table-space"  >
  <tbody>
   <%
+  //Declare variable
    String name = null;
    int followerCount =0;
    String result ="";
@@ -46,9 +44,13 @@
    ArrayList<String> requestedFollowers = null;
    if(request.getAttribute("Following") != null){
 	   requestedFollowers  = (ArrayList<String>) request.getAttribute("Following");
-   }
+	   System.out.println("++++");
+	   System.out.println(requestedFollowers);
+   }//end if request
    if(request.getAttribute("userInfo") !=null){
 	  info = (ArrayList<UserInfo>)request.getAttribute("userInfo");
+	   System.out.println("++++");
+	   System.out.println(info);
 	  for(int i = 0; i<info.size(); i++){
 		UserInfo data = info.get(i);
 		name = data.getName();
@@ -58,46 +60,51 @@
 			labelOfflineOrOnline = "label success";
 		}else{
 			labelOfflineOrOnline = "label danger";
-		}
-		if(requestedFollowers.contains(name) && !requestedFollowers.contains(sessionUser)){
-			%>
-			 <form action="UnFollowController" method="post">
-			   <input type="hidden" name="Page" value="FindUser">
-			    <tr>
-			     <td>
-			      <img class="img-circle img-align"src="./getImage?User=<%=name %>" >
-			     </td>
-			     <td><div class="text-alignn"> <a href="./ProfileController?user=<%=name%>&Page=false" class="card-link"><%=name%></a></div></td>
-			     <td><div class="text-align">Followers: <%=followerCount %></div></td>
-			    			     <td><div class="text-align"><span class="<%=labelOfflineOrOnline %>"><%=status %></span></div></td>
-			     <td><div class="text-right img-align"><button type="submit" name="unRequestName" value="<%=name %>" class="btn btn-success" >UnFollow</button></div></td>
-			    </tr>
-			  </form>
-			<%
-		}else{
-			  %>
-			  <form action="FollowController?page=findUser" method="post">
-			    <tr>
-			     <td>
-			      <img class="img-circle img-align"src="./getImage?User=<%=name %>" >
-			     </td>
-			     <td><div class="text-alignn"><a href="./ProfileController?user=<%=name%>&Page=false" class="card-link"><%=name%></a></div></td>
-			     <td><div class="text-align">Followers: <%=followerCount %></div></td>
-			     <td><div class="text-align"><span class="<%=labelOfflineOrOnline %>"><%=status %></span></div></td>
-			     <td><div class="text-right img-align"><button type="submit" name="followerName" value="<%=name %>" class="btn btn-primary" >Follow</button></div></td>
-			    </tr>
-			  </form>
-			   <%
-		}//end if requested.contains(name)
+		}//end if status
+		System.out.println(requestedFollowers.contains(name));
+		if(!name.equals(sessionUser)){
+			if(requestedFollowers.contains(name)){
+				System.out.println(name);
+				%>
+				 <form action="UnFollowController" method="post">
+				   <input type="hidden" name="Page" value="FindUser">
+				    <tr>
+				     <td>
+				      <img class="img-circle img-align"src="./getImage?User=<%=name %>" >
+				     </td>
+				     <td><div class="text-alignn"> <a href="./ProfileController?user=<%=name%>&Page=false" class="card-link"><%=name%></a></div></td>
+				     <td><div class="text-align">Followers: <%=followerCount %></div></td>
+				    			     <td><div class="text-align"><span class="<%=labelOfflineOrOnline %>"><%=status %></span></div></td>
+				     <td><div class="text-right img-align"><button type="submit" name="unRequestName" value="<%=name %>" class="btn btn-success" >UnFollow</button></div></td>
+				    </tr>
+				  </form>
+				<%
+			}else{
+				System.out.println(name);
+				  %>
+				  <form action="FollowController?page=findUser" method="post">
+				    <tr>
+				     <td>
+				      <img class="img-circle img-align"src="./getImage?User=<%=name %>" >
+				     </td>
+				     <td><div class="text-alignn"><a href="./ProfileController?user=<%=name%>&Page=false" class="card-link"><%=name%></a></div></td>
+				     <td><div class="text-align">Followers: <%=followerCount %></div></td>
+				     <td><div class="text-align"><span class="<%=labelOfflineOrOnline %>"><%=status %></span></div></td>
+				     <td><div class="text-right img-align"><button type="submit" name="followerName" value="<%=name %>" class="btn btn-primary" >Follow</button></div></td>
+				    </tr>
+				  </form>
+				   <%
+		 }//end if requested.contains(name)
+		}//end if name
 	   }// end for i 
     }else{
     	if(request.getAttribute("result") !=null){
     		result = request.getAttribute("result").toString();
-    	}
+    	}//end if request
     	%>
     	<h6><%=result %></h6>
     	<%
-    }%>
+    }//end if request%>
   </tbody>
     </table>
   </div>

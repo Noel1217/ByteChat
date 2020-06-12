@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-18
+//This SessionFilter check if session has been destroyed or not
 package com.session;
 
 import java.io.IOException;
@@ -34,23 +37,10 @@ import javax.servlet.http.HttpSession;
 		})
 public class SessionFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public SessionFilter() {
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
-	}
-
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
+	//This procedure takes in a request object and response object and check if session is alive
+    //request:ServletRequest:containing request object from website
+    //reponse:ServletResponse:containg response object to the website from server side
+	//chain:FilterChain:object send data to filters and then to servlet
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		//Declaring objects
 		HttpServletRequest req = (HttpServletRequest) request;
@@ -60,17 +50,12 @@ public class SessionFilter implements Filter {
 		//Check Session
 		if(session.getAttribute("sessionUser") == null) {
 			resp.sendRedirect("Login.jsp?userRegistered=");
-		}
+		}//emd session
 
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
-	}
+	}//end doFilter
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
-	}
+	
 
 }

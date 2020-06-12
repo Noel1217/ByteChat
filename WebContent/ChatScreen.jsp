@@ -5,6 +5,7 @@
     <%@ page import="com.Connector.Dao" %>
     <%@ page import="com.Chat.Message" %>
 		<% 
+		//Declare variables 
 		 String sessionUser =session.getAttribute("sessionUser").toString().trim();
 		 String chatId  = null;
 		  if(!session.getAttribute("Chat").toString().equals("Null")){
@@ -36,11 +37,11 @@
 							  </div>
 							</div>
 						  <%
-					  }
-				  }
-			  }
+					  }//end if mesg
+				  }//end for i
+			  }//end if msgArray
 			  
 			 
-		  }
+		  }//end if session
 		%>
 		

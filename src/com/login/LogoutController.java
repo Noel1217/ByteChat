@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-03-15
+//This servlet class to logout user
 package com.login;
 
 import java.io.IOException;
@@ -15,19 +18,20 @@ import com.Connector.Dao;
  */
 @WebServlet("/LogoutController")
 public class LogoutController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
     
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	//This procedure takes in a request object and response object and logout user
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declare varibales
     	HttpSession session = request.getSession();
     	session.invalidate();
     	response.sendRedirect("Login.jsp?userRegistered=");
    
-	}
+	}//end doPost
     
 
 }

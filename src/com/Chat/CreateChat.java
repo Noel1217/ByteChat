@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-06-1
+//This servlet class create a chat with inputed information
 package com.Chat;
 
 import java.io.IOException;
@@ -17,15 +20,14 @@ import com.Parameters.GetParameters;
  */
 @WebServlet("/CreateChat")
 public class CreateChat extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
-       
-    
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	//This procedure takes in a request object and response object and create a chat in the database
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Declare varibales
+		//Declare variables
 		Dao chatDao = new Dao();
 		String groupOrMessage = request.getParameter("type");
 		String[] messageUser = request.getParameterValues("userSelected");
@@ -52,13 +54,13 @@ public class CreateChat extends HttpServlet {
 			chatDao.closeCon();
 		}else {
 			System.out.println("Error");
-		}
+		}//end if groupOrMesssage
 		
 		if(result > 0) {
 			response.sendRedirect("./ChatInboxController?Chat=Null");
 		}else {
 			response.sendRedirect("Error.jsp");
-		}
-	}
+		}//end if result
+	}//end doPost
 
 }

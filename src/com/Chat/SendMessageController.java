@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-06-1
+//This servlet class sends message
 package com.Chat;
 
 import java.io.IOException;
@@ -15,9 +18,12 @@ import com.Connector.Dao;
  */
 @WebServlet("/SendMessageController")
 public class SendMessageController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
-       
-
+    
+	//This procedure takes in a request object and response object and sends message to other users
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declare variable
 		HttpSession session = request.getSession();
@@ -34,7 +40,8 @@ public class SendMessageController extends HttpServlet {
 			response.sendRedirect("./ChatInboxController?Chat="+chatId);
 		}else {
 			response.sendRedirect("error.jsp");
-		}
-	}
+		}//end if result
+		
+	}//end doPost
 
 }

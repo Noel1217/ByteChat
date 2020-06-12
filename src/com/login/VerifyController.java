@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-03-15
+//This servlet class to verifyController
 package com.login;
 
 import java.io.IOException;
@@ -15,11 +18,14 @@ import com.Connector.Dao;
  */
 @WebServlet("/VerifyController")
 public class VerifyController extends HttpServlet {
-
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
-
+	
+	//This procedure takes in a request object and response object and verify user
+    //request:HttpServletRequest:containing request object from website
+    //reponse:HttpServletResponse:containg response object to the website from server side
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Declaring variables
+		//Declaring variables and objects
 		String code = request.getParameter("code");
 		HttpSession session = request.getSession();
 		String user = session.getAttribute("sessionUser").toString();
@@ -42,9 +48,8 @@ public class VerifyController extends HttpServlet {
 		}else  {
 			request.setAttribute("codeError", "Wrong Code");
 			request.getRequestDispatcher("Verification.jsp").forward(request, response);
-		}
-		
-		
-	}
+		}//end if result
+
+	}//end doPost
 
 }

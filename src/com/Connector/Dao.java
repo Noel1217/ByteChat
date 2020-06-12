@@ -1,5 +1,5 @@
 //Noel Gregory
-//2020-06-09
+//2020-0-09
 //This class is the database access object
 package com.Connector;
 
@@ -352,24 +352,29 @@ public class Dao {
 		//Declare variables and objects
 		PostInfo post = null;
 		List<PostInfo> postData = new ArrayList<PostInfo>();
-		String query = "select * from post where Username=? ";
+		String query = "select * from post where Username=?";
 		int postId  = 0;
+		PreparedStatement ps = null;
+		ResultSet rst = null;
 
 		try {
-			pstm = con.prepareStatement(query);
-			pstm.setString(1, user);
-			rs = pstm.executeQuery();
-			while(rs.next()) {
+			ps = con.prepareStatement(query);
+			ps.setString(1, user);
+			rst = ps.executeQuery();
+			while(rst.next()) {
 				post = new PostInfo();
-				post.setPostName(rs.getString("PostTitle"));
-				postId = rs.getInt("idPost");
+				post.setPostName(rst.getString("PostTitle"));
+				System.out.println(rst.getString("PostTitle"));
+				postId = rst.getInt("idPost");
 				post.setPostId(postId);
-				post.setUser(rs.getString("Username"));
-				post.setPostDate(rs.getString("datePost"));
-				post.setPostImageOrVideo(rs.getString("PostImageOrVideo"));
+				post.setUser(rst.getString("Username"));
+				post.setPostDate(rst.getString("datePost"));
+				post.setPostImageOrVideo(rst.getString("PostImageOrVideo"));
 				post.setPostLikes(getPostLikes(postId));
 				postData.add(post);
 			}//end while rs.next()
+			rst.close();
+			ps.close();
 		}catch (SQLException  e){
 			e.printStackTrace();
 		}//end try catch
@@ -622,7 +627,7 @@ public class Dao {
 			while(rs.next()) {
 				dataCode = rs.getString("Verification_State");  //Retrieving verification code from database
 				replacedDataCode = dataCode.replace("#", "");
-				if(code.equals("123")) {   //checking if the same code :for testing replacedDataCode
+				if(code.equals(replacedDataCode)) {   //checking if the same code :for testing replacedDataCode
 					pstm = con.prepareStatement(queryVerfiy);
 					pstm.setString(1, "Verified");
 					pstm.setString(2, user);

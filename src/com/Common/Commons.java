@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-04-25
+//This class is common class that has multiple function to help the Dao object
 package com.Common;
 
 import java.io.File;
@@ -46,44 +49,42 @@ public class Commons {
 	    {
 	    	filePath = uniqueStringGenerator(rand.nextInt(50),ext);
 	        File file = new File("C:\\Users\\Noel Gregory\\eclipse-workspace\\ByteWeb\\WebContent\\Post\\"+filePath);
-	        
 	        outputStream = new FileOutputStream(file);
 	        IOUtils.copy(in, outputStream);
 	    }catch (Exception e) {
 	    	e.printStackTrace();
-	    }
+	    }//end try catch
 	    
 		return "Post/"+filePath;
 		
 	}//end DownloadStream
 	
 	//This function take in a inputstream and string and returns the path of file uploaded
-		//in:InputStream:the image 
-		//ext:String:holds what type of file it is
-		//return:string:path of stored image or video
-		public String chatDownloadStream(InputStream in,String ext) throws Exception {
-			OutputStream outputStream = null;
-			String filePath = "";
-			Random rand = new Random(5);
-		    try
-		    {
-		    	filePath = uniqueStringGenerator(rand.nextInt(50),ext);
-		        File file = new File("C:\\Users\\Noel Gregory\\eclipse-workspace\\ByteWeb\\WebContent\\ChatImages\\"+filePath);
-		        
-		        outputStream = new FileOutputStream(file);
-		        IOUtils.copy(in, outputStream);
-		    }catch (Exception e) {
-		    	e.printStackTrace();
-		    }
-		    
-			return "ChatImages/"+filePath;
-			
-		}//end DownloadStream
+	//in:InputStream:the image 
+	//ext:String:holds what type of file it is
+	//return:string:path of stored image or video
+	public String chatDownloadStream(InputStream in,String ext) throws Exception {
+		OutputStream outputStream = null;
+		String filePath = "";
+		Random rand = new Random(5);
+	    try
+	    {
+	    	filePath = uniqueStringGenerator(rand.nextInt(50),ext);
+	        File file = new File("C:\\Users\\Noel Gregory\\eclipse-workspace\\ByteWeb\\WebContent\\ChatImages\\"+filePath); 
+	        outputStream = new FileOutputStream(file);
+	        IOUtils.copy(in, outputStream);
+	    }catch (Exception e) {
+	    	e.printStackTrace();
+	    }//edn try catch
+	    
+		return "ChatImages/"+filePath;
 		
+	}//end DownloadStream
+	
 	
 	//This function takes in a number and extension and returns a generated string for file name
 	//num:int:size of string returned
-	//exention:String:add the extension to generated string
+	//extension:String:add the extension to generated string
 	//return:String: generated file name string
 	public String uniqueStringGenerator(int num,String extension) {
 		  // chose a Character random from this String 
@@ -103,12 +104,12 @@ public class Commons {
             // add Character one by one in end of sb 
             sb.append(AlphaNumericString 
                           .charAt(index)); 
-        } 
+        }//end for i 
          sb.append("." +extension);
         return sb.toString(); 
 	}//end uniqueStringGenerator
 	
-	//This fucntion takes in a int and returns generated string
+	//This function takes in a int and returns generated string
 	//num:int:the size of returning string
 	//return:String: generated string
 	public String uniqueStringGenerator(int num) {
@@ -133,9 +134,9 @@ public class Commons {
       return sb.toString(); 
 	}//end uniqueStringGenerator
 	
-	//This function takes two strings and returns result
-	//email(String),this string take the email address
-	//email(int),this int takes the verification number to send
+	//This procedure takes in two strings and send email
+	//emailAddress:String:,this string take the email address
+	//verfiyNum:int:,this int takes the verification number to send
 	public void email(String emailAddress,String verfiyNum) {
 		Properties props = new Properties();
 	    props.put("mail.smtp.starttls.enable", "true");
@@ -161,10 +162,9 @@ public class Commons {
 	         ex.printStackTrace();
 	     }
     }//end email
-	
-	//This function takes two strings and returns result
-	//emailForgotPass(String),this string take the email address
-	//emailForgotPass(String),this String takes the password of user to send
+	//This procedure takes in two strings and send email
+	//emailAddress:String:,this string take the email address
+	//decryptPass:Sring:this String takes the password of user to send
 	public void emailForgotPass(String emailAddress,String decryptPass) {
 		Properties props = new Properties();
 	    props.put("mail.smtp.starttls.enable", "true");
@@ -173,7 +173,7 @@ public class Commons {
 	    props.put("mail.smtp.port", "587");
 	          
 	    Session session1 = Session.getInstance(props,
-	              new javax.mail.Authenticator() {  //logging intotech71047@gmail.com account
+	              new javax.mail.Authenticator() {  //logging into tech71047@gmail.com account
 	                  protected PasswordAuthentication getPasswordAuthentication() {
 	                      return new PasswordAuthentication(USERNAME, PASSWORD);
 	                  }
@@ -188,7 +188,7 @@ public class Commons {
 		      System.out.println("succesfully sended..");
 	     } catch (Exception ex) {
 	         ex.printStackTrace();
-	     }
+	     }//end try catch
     }//end emailForgotPass
 	
 	//This function take a string and decodes the string and return it
@@ -220,10 +220,10 @@ public class Commons {
        //Initiating loop
        for(int id :  sessionUser.keySet()){
            if(otherUser.containsKey(id)){
-        	   otherVar = otherUser.get(id);
-           }else{
         	   otherVar = 0;
-           }
+           }else{
+        	   otherVar = 1.0;
+           }//end if otherUser
            diff =  sessionUser.get(id) - otherVar;
            totalDiff +=diff*diff;
 
@@ -236,43 +236,51 @@ public class Commons {
        return invert;
    }//end Similarity
 	
-	public HashMap<Double,String> haspMapSort(HashMap<Double,String> unSortedHashMap){
-		
+	/*This function passes in one parameters and returns a sorted hashMap object 
+	 *unSortedHashMap:HaspMap<Double,String>:this object holds the rating system info
+	 *returns:HaspMap<Double,String>:this hashmap object is sorted */
+	public HashMap<Double,String> hashMapSort(HashMap<Double,String> unSortedHashMap){
+		//Declaring variables
 		ArrayList<Double> keys = new ArrayList<Double>(unSortedHashMap.keySet());
 		int n = keys.size();
 		HashMap<Double,String> sortedHashMap = new HashMap<Double,String>();
 		double temp = 0;
 		double temp1 = 0;
 		int midPos = 0;
+		
 		for(int i  = 0; i< n-1; i++) {
 			midPos = i;
 			for(int j = i + 1 ;j <n; j++) {
 				if(keys.get(j) < keys.get(midPos)){
 					midPos = j;
 					
-				}
-			}
+				}//end if keys
+			}//end for j
 			temp =  keys.get(midPos);
 			temp1 = keys.get(i);
 			keys.set(midPos, temp1); 
 			keys.set(i, temp);
 			
-		}
+		}//end for i
 		
 		for(double key : keys) {
 			sortedHashMap.put(key, unSortedHashMap.get(key));
-		}
-		return sortedHashMap;
+		}//end for key
 		
-	}
+		return sortedHashMap;//returned value	
+	}//end hashMapSort
 	
+	/*This function passes in one parameter String and returns an integer
+	 * input:String:contains name of image
+	 * return:int:if changing the image was successful or not*/
 	public int greyScaleFilter(String input) {
         int width = 0;
         int height = 0;
 		File fileInput = new File("C:\\Users\\Noel Gregory\\eclipse-workspace\\ByteWeb\\WebContent\\Post\\"+input);
 		String ext = FilenameUtils.getExtension(fileInput.getName());
 		File fileOut = new File("C:\\Users\\Noel Gregory\\eclipse-workspace\\ByteWeb\\WebContent\\Post\\Out"+input);
-       	try {
+      
+		try {
        		BufferedImage img = ImageIO.read(fileInput);//Reading image
    	     
 	       //Getting dimensions
@@ -302,10 +310,13 @@ public class Commons {
 	     return 1;
        	}catch(Exception e) {
            e.printStackTrace();
-        }
+        }//edn try catch
        	return  0 ;
-	}
+	}//endgreyScaleFilter
 	
+	/*This function passes in one parameter String and returns an integer
+	 * input:String:contains name of image
+	 * return:int:if changing the image was successful or not*/
 	public int negativeFilter(String input) {
         int width = 0;
         int height = 0;
@@ -345,10 +356,13 @@ public class Commons {
 	     return 1;
        	}catch(Exception e) {
            e.printStackTrace();
-        }
+        }//end for try catch
        	return  0 ;
-	}
-	
+	}//end negativeFilter
+	/*This function passes in two string parameters and returns a String[]
+	 * str:String:contains string of users
+	 * replaceStr:String:contains string to split str string into an array 
+	 * returns:String[]:array of str split into array*/
 	public String[] splitStringToAr(String str,String replaceStr) {
 		//Declare vairbales
 		String[] ar = null;
@@ -359,15 +373,16 @@ public class Commons {
 			finalStr = str.replace(replaceStr, "");
 		}//end if str
 
-		
 		//check if finalStr is empty
 		if(!finalStr.isEmpty()) {
 			ar = finalStr.split(",");
 		}//end if finalStr
 		
-		return ar;
-	}
-	
+		return ar;//returned value
+	}//end for splitStringToAr
+	/*This function passes in two string parameters and returns a String[]
+	 * str:String:contains string of users
+	 * returns:String[]:array of str split into array*/
 	public String[] splitStringToAr(String str) {
 		//Declare vairbales
 		String[] ar = null;
@@ -378,27 +393,34 @@ public class Commons {
 			ar = str.split(",");
 		}//end if finalStr
 		
-		return ar;
-	}
+		return ar;//returned value
+	}//end splitStringToAr
 	
+	/*This function passes in one parameter string and returns number of followers in integer
+	 * str:String:containing all followers
+	 * return:int:number of followers*/
 	public int countFollowers(String str) {
 		//Declare varibales
 		String[] ar = null;
 
-		ar = str.split(",");
+		ar = str.split(",");//splitting str
 
-		return ar.length;
+		return ar.length;//returned value
 	
-	}
-	
+	}//end countFollowers
+	/*This function passes in one parameter string and returns number of followers in integer
+	 * str:String:containg username
+	 * return:int:number of followers*/
 	public static int getFollowerCount(String user) {
-		//Declare var
+		//Declare variables and object
 		Dao dao = new Dao();
 		int result = 0;
-	    result = dao.getUserFollowerCount(user);
+		
+	    result = dao.getUserFollowerCount(user);//Getting follower Count
 	    dao.closePstm();
 	    dao.closeRs();
 	    dao.closeCon();
-	    return result;
-	}
+	    
+	    return result;//returned value
+	}//end getFollowerCount
 }

@@ -57,23 +57,23 @@
  
 
 <div class="justify-content-center" style="margin-top:25px;">
-<%
-if(imageOrVideo.contains(".mp4")){
- %>
- <input type="hidden" name="video/image" value="video">
-  <video class="card-img-top" alt="could not load video" style="margin:20px;"width="1000px" height="650px" controls  >
-    <source src="<%=imageOrVideo%>"  type="video/mp4">
-  </video>	
- <%
-}else{
- %>
- <input type="hidden" name="video/image" value="image">
- <input type="hidden" name="imageFilter" value="<%=imageOrVideo%>"/>
-       <input type="hidden" name="orginalFile" value="<%=OrginalimageOrVideo%>"/>
- <img src="<%=imageOrVideo%>" id="image"  >
- <%
-}
-%>		   
+	<%
+	if(imageOrVideo.contains(".mp4")){
+	 %>
+	   <input type="hidden" name="video/image" value="video">
+	   <video class="card-img-top" alt="could not load video" style="margin:20px;"width="1000px" height="650px" controls  >
+	    <source src="<%=imageOrVideo%>"  type="video/mp4">
+	   </video>	
+	 <%
+	}else{
+	 %>
+	   <input type="hidden" name="video/image" value="image">
+	   <input type="hidden" name="imageFilter" value="<%=imageOrVideo%>"/>
+	    <input type="hidden" name="orginalFile" value="<%=OrginalimageOrVideo%>"/>
+	   <img src="<%=imageOrVideo%>" id="image"  >
+	 <%
+	}//end if imageOrVideo
+	%>		   
 </div>
  <button type="submit" style="margin:25px;" class="btn btn-danger " >
      Cancel 

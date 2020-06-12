@@ -1,3 +1,6 @@
+//Noel Gregory
+//2020-06-1
+//This servlet class gets all the chat that the session user participates in
 package com.Chat;
 
 import java.io.IOException;
@@ -18,8 +21,12 @@ import com.Connector.Dao;
  */
 @WebServlet("/ChatInboxController")
 public class ChatInboxController extends HttpServlet {
+	//Declare Variables
 	private static final long serialVersionUID = 1L;
-    
+	
+    //This procedure takes in a request object and response object and get all chat the user participates in
+	//request:HttpServletRequest:containing request object from website
+	//reponse:HttpServletResponse:containg response object to the website from server side
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Declare varibales
 		HttpSession session = request.getSession();
@@ -43,7 +50,7 @@ public class ChatInboxController extends HttpServlet {
 		request.setAttribute("following", usersFollowing);
 		request.getRequestDispatcher("Chat.jsp").forward(request, response);
 		
-	}
+	}//end service
 
 
 }
